@@ -1,0 +1,42 @@
+---
+title: "poisson-dist-experiment"
+output: pdf_document
+---
+
+## What is the shape of distribution when lambda is small in poisson distribution
+
+When lambda is small , we can find that the shape of poisson shift to left.
+
+Let's experiment when lambda is 1, 2, and 4
+
+```{r cars}
+pos.sample<- rpois(1000, 0.5)
+pos.sample.df <-data.frame(pos.sample)
+sampl.agg.df <- aggregate(pos.sample.df$pos.sample, by = list(rv = pos.sample.df$pos.sample) , FUN = sum)
+barplot(sampl.agg.df$x~sampl.agg.df$rv, col=c("#ccf0fe9f"), horiz=FALSE, cex.names=0.5, las=1, width=1, 
+        xlab="lambda is 0.5", ylab="Frequencies")
+
+pos.sample<- rpois(1000, 1)
+pos.sample.df <-data.frame(pos.sample)
+sampl.agg.df <- aggregate(pos.sample.df$pos.sample, by = list(rv = pos.sample.df$pos.sample) , FUN = sum)
+barplot(sampl.agg.df$x~sampl.agg.df$rv, col=c("#ccf0fe9f"), horiz=FALSE, cex.names=0.5, las=1, width=1, 
+        xlab="lambda is 1", ylab="Frequencies")
+
+pos.sample<- rpois(1000, 2)
+pos.sample.df <-data.frame(pos.sample)
+sampl.agg.df <- aggregate(pos.sample.df$pos.sample, by = list(rv = pos.sample.df$pos.sample) , FUN = sum)
+barplot(sampl.agg.df$x~sampl.agg.df$rv, col=c("#ccf0fe9f"), horiz=FALSE, cex.names=0.5, las=1, width=1, 
+        xlab="lambda is 2", ylab="Frequencies")
+```
+
+## What is the shape of distribution when lambda is big in poisson distribution
+
+We consider lambda is big, the distribution shape is bell curve, which is the same as normal distribution shape.
+
+```{r}
+pos.sample<- rpois(1000, 50)
+pos.sample.df <-data.frame(pos.sample)
+sampl.agg.df <- aggregate(pos.sample.df$pos.sample, by = list(rv = pos.sample.df$pos.sample) , FUN = sum)
+barplot(sampl.agg.df$x~sampl.agg.df$rv, col=c("#ccf0fe9f"), horiz=FALSE, cex.names=0.5, las=1, width=1, 
+        xlab="lambda is 50", ylab="Frequencies")
+```
